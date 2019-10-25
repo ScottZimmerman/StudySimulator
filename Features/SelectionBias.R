@@ -15,6 +15,7 @@ function(outcome,exposure){
     joinString2 <- paste0(paste0("j.",confounders, "=w.",confounders),collapse=" and ")
 
     query <- paste0(c("select sum(j.RD_W*w.P) as ATE from (",RD_query,") as j join (",W_query,") as w on ",joinString2),collapse="")
+    print(query)
     ATE <- sqldf(query)[1,"ATE"]
     return(ATE)
   }
