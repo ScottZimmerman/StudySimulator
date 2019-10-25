@@ -1,8 +1,9 @@
 function(outcome,exposure){
 
   measureATE_givenS_NoLoop <- function(selector){
-    print("Measuring ATE without loop")
+    print("Measuring ATE given selection without loop")
     Y_Table <- pXgivenPa[[outcome]]
+	  print(Y_Table)
     W_string <- paste0(confounders,collapse=", ")
 
     A1_confs <- paste0(paste0("a1.",confounders, " as ",confounders),collapse=", ")
@@ -15,8 +16,8 @@ function(outcome,exposure){
     joinString2 <- paste0(paste0("j.",confounders, "=w.",confounders),collapse=" and ")
 
     query <- paste0(c("select sum(j.RD_W*w.P) as ATE from (",RD_query,") as j join (",W_query,") as w on ",joinString2),collapse="")
-    print(query)
-	  print(Y_Table)
+    	  print(query)
+
     ATE <- sqldf(query)[1,"ATE"]
     return(ATE)
   }
