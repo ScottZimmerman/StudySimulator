@@ -1,7 +1,6 @@
 function(outcome,exposure){
 
   measureATE_givenS_NoLoop <- function(selector){
-    print("Measuring ATE given selection without loop")
     Y_Table <- pXgivenPa[[outcome]]
 	  print(Y_Table)
     W_string <- paste0(confounders,collapse=", ")
